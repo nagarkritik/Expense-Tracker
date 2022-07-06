@@ -30,9 +30,33 @@ signupButton.addEventListener('click', (e)=>{
         console.log(userDetails)
         axios.post('http://localhost:3000/signup', userDetails)
         .then((res)=>{
-            console.log(res.data.msg)
+            console.log(res.data.flag)
+
+            showPopupMessage(res.data.flag)
+
         }).catch(err=>console.log(err))
     }
 
-
 })
+
+function showPopupMessage(flag){
+    const popContainer = document.querySelector('.popup-container')
+    const popMessage = document.querySelector('.popup-message')
+
+
+    if(flag){
+        popMessage.innerHTML = `
+        <p>Signup Successful</p>
+        <p>Please go to Login Page to login to your account.</p>
+        `
+    }else{
+        popMessage.innerHTML = `
+        <p>User already exists. Please login</p>`
+    }
+
+    popContainer.classList.add('active')
+
+    setTimeout(()=>{
+        popContainer.classList.remove('active')
+    }, 3000)
+}

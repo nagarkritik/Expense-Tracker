@@ -85,3 +85,40 @@ p{
     color: red;
 	font-family: 'Patua One', cursive;
  }
+
+ .popup-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	display: none;
+	align-items: center;
+	justify-content: center;
+	
+ }
+
+ .popup-container.active{
+	display: block;
+	
+ }
+
+ .popup-message{
+	background-color:white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+	padding: 1rem;
+	margin: 1px auto;
+    width: 300px;
+	height: auto;
+	align-items: center;
+	justify-content: center;
+}
+
+.popup-message p{
+	color: #24243e;
+	font-family:'Patua One', cursive; ;
+	text-align: center;
+}

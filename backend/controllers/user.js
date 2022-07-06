@@ -17,7 +17,7 @@ exports.postSignup = async (req, res, next)=>{
             phoneNumber: userDetails.phone,
             password: hashedPassword
         })
-        res,json({flag: true, msg: "User created"})
+        res.json({flag: true, msg: "User created"})
     }else{
         res.json({flag: false, msg: "user already exists"})
     }
