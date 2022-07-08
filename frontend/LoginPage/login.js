@@ -27,11 +27,9 @@ loginBtn.addEventListener('click', (e)=>{
                 
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('userDetails', JSON.stringify({name:res.data.name, email: res.data.email}))
+                window.location.replace('../HomePage/home.html');
             }
-            else {
-                console.log("dquwj")
-            }
-
+            
         }).catch(err=>{
             //console.log(err)
             const errMsg = err.toString()
