@@ -9,13 +9,23 @@
   <title>Expense Tracker</title>
 </head>
 <body>
+
   <header id="main-header" class="text-white p-4 mb-3">
+    <button id="btn">☰</button>
+
+    <nav id="nav">
+        <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><button id="premium">Buy Premium</button></li>
+            <li><button id="logout">Logout</button></li>
+        </ul>
+    </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-6">
             <h1 id="header-title">Expense Tracker</h1>
         </div>
-        <div class="col-md-6 align-self-center">
+        <div class="col-md-5 align-self-center">
             <input type="text" class="form-control" id="filter" placeholder="Search Items...">
         </div>
       </div>
@@ -42,6 +52,7 @@
     </ul>
    </div>
   </div>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   <script src="home.js" charset="utf-8"></script>
 </body>

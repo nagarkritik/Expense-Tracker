@@ -40,3 +40,62 @@ input{
 	border-radius: 5px;
     border: 2px solid black;
 }
+
+#btn {
+    background-color: white;
+    border: none;
+    color: rebeccapurple;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+#btn.active {
+    transform: translateX(-130px);
+}
+
+nav {
+    background-color: rebeccapurple;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+nav.active {
+    transform: translateX(0);
+}
+
+nav ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+nav ul li {
+    padding: 1rem 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover{
+	text-decoration: none;
+	color: white;
+}
+
+nav button{
+	border: none;
+	background-color: rebeccapurple;
+	color: white;
+	padding: 0;
+	cursor: pointer;
+}
+
