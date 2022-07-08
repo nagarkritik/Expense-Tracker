@@ -5,12 +5,10 @@ const User = require('../models/user')
     try{
         const token=req.header('authorization')
 
-        console.log(token)
-
         const userId=jwt.verify(token, process.env.TOKEN_SECRET);
         console.log(userId)
         User.findByPk(userId).then(user=>{
-            console.log(JSON.stringify(user))
+            //console.log(JSON.stringify(user))
             req.user=user;
             next();
         })

@@ -14,22 +14,43 @@ let category = document.querySelector('#category')
 
 
 window.addEventListener('DOMContentLoaded', (e)=>{
-    axios.get('http://localhost:3000/home/getExpenses', { headers: {"Authorization" : token} })
-    .then(res=>{
-        console.log(res)
+    axios.get('http://localhost:3000/home', { headers: {"Authorization" : token} })
+    .then(user=>{
 
-        let expenses = res.data.expenses
+        console.log(user.data.premium)
 
-        for(let i=0; i<expenses.length; i++){
-            let expAmount = expenses[i].amount
-            let expCategory = expenses[i].category
-            let expDescription = expenses[i].description
-            let expDate = expenses[i].createdAt.slice(0,10)
+        let isPremium = user.data.premium
 
-            displayExpense(expAmount, expCategory, expDescription, expDate)
+        if(isPremium){
+            let premiumDiv = document.querySelector(".premium-feature")
+
+            premiumDiv.innerHTML = `
+            <li><a href="../LeaderboardPage/leaderboard.html" id="leaderboard">Leaderboard</a></li>
+            <li><button id="darkmode">Dark Mode</button></li>
+            `
+
+            let leaderboardBtn = document.querySelector('#leaderboard')
+            let darkModeBtn = document.querySelector('#darkmode')
 
         }
+
+        axios.get('http://localhost:3000/home/getExpenses', { headers: {"Authorization" : token} })
+        .then(res=>{
+        console.log(res)
+
+            let expenses = res.data.expenses
+
+            for(let i=0; i<expenses.length; i++){
+                let expAmount = expenses[i].amount
+                let expCategory = expenses[i].category
+                let expDescription = expenses[i].description
+                let expDate = expenses[i].createdAt.slice(0,10)
+
+                displayExpense(expAmount, expCategory, expDescription, expDate)
+            }
+        })
     })
+    
 })
 
 const btn = document.getElementById("btn");

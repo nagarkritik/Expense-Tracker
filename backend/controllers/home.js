@@ -29,3 +29,10 @@ exports.getAllExpenses = (req, res, next)=>{
         res.json({expenses})
     })
 }
+
+
+exports.getUserDetails = (req, res, next)=>{
+    let premium = req.user.dataValues.isPremium
+    res.json({premium})
+}
+

@@ -6,7 +6,7 @@ const orderController = require('../controllers/order')
 
 const router = express.Router()
 
-
+router.get('/home', authorizationController.authenticateToken, homeController.getUserDetails)
 router.post('/home/addExpense', authorizationController.authenticateToken, homeController.postExpense)
 router.get('/home/getExpenses',authorizationController.authenticateToken, homeController.getAllExpenses)
 router.get('/home/purchasePremium', authorizationController.authenticateToken, orderController.purchasepremium)

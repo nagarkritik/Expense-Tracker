@@ -11,7 +11,8 @@ body{
 
 .main-container{
     width: 400px;
-    height: 550px;
+    height: 500px;
+    background: red;
     overflow: hidden;
 	background-color: rgb(39, 25, 91);
     border-radius: 10px;
@@ -24,7 +25,7 @@ label{
 	justify-content: center;
 	display: flex;
 	margin: 60px;
-	font-weight: bold;
+	
 	cursor: pointer;
 }
 
@@ -51,7 +52,7 @@ button{
 	background: #573b8a;
 	font-size: 1em;
 	font-weight: bold;
-	margin-top: 40px;
+	margin-top: 20px;
 	outline: none;
 	border: none;
 	border-radius: 5px;

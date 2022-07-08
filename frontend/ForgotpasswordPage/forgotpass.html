@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./login.css">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="./forgotpass.css">
 </head>
 <body>
     <div class="popup-container">
@@ -18,19 +18,16 @@
     <div class="main-container">
         <div class="form-container">
             <form action="">
-                <label for="chk" aria-hidden="true">Login</label>
+                <label for="chk" aria-hidden="true">Reset Password</label>
                 
                 <input type="email" name="email" id="email" placeholder="Email">
                 
-                <input type="password" name="password" id="password" placeholder="Password">
-
-                <button type="submit" id="loginBtn">Login</button>
+                <button type="submit" id="resetBtn">Reset Password</button>
             </form>
-            <p>Create a new account. <a href="../SignUpPage/signup.html">Sign Up</a></p>
-            <p>Forgot Password ?<a href="../ForgotpasswordPage/forgotpass.html">Reset</a></p>
+            <p>Back to <a href="../LoginPage/login.html">Login Page</a></p>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="./login.js"></script>
+    <script src="./forgotpass.js"></script>
 </body>
 </html>
