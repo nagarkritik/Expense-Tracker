@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', (e)=>{
 
             premiumDiv.innerHTML = `
             <li><a href="../LeaderboardPage/leaderboard.html" id="leaderboard">Leaderboard</a></li>
+            <li><a href="../ReportPage/report.html" id="report">Report</a></li>
             <li><button id="darkmode">Dark Mode</button></li>
             `
         }

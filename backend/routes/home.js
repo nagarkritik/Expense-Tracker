@@ -13,4 +13,9 @@ router.get('/home/purchasePremium', authorizationController.authenticateToken, o
 router.post('/home/updateTransactionStatus', authorizationController.authenticateToken, orderController.updateTransactionStatus)
 router.get('/home/leaderboard', authorizationController.authenticateToken, homeController.getExpenseTotals)
 router.post('/home/deleteExpense', authorizationController.authenticateToken, homeController.postDeleteExpense)
+router.get('/home/report/getDailyExpenses', authorizationController.authenticateToken, homeController.getDailyExpenses)
+router.get('/home/report/getWeeklyExpenses', authorizationController.authenticateToken, homeController.getWeeklyExpenses)
+router.get('/home/report/getMonthlyExpenses', authorizationController.authenticateToken, homeController.getMonthlyExpenses)
+
+
 module.exports = router
