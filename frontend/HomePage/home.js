@@ -17,11 +17,11 @@ window.addEventListener('DOMContentLoaded', (e)=>{
     axios.get('http://localhost:3000/home', { headers: {"Authorization" : token} })
     .then(user=>{
 
-        console.log(user.data.premium)
+        console.log(user.data.user.isPremium)
 
-        let isPremium = user.data.premium
+        let premium = user.data.user.isPremium
 
-        if(isPremium){
+        if(premium){
             let premiumDiv = document.querySelector(".premium-feature")
 
             premiumDiv.innerHTML = `
@@ -41,12 +41,13 @@ window.addEventListener('DOMContentLoaded', (e)=>{
             let expenses = res.data.expenses
 
             for(let i=0; i<expenses.length; i++){
+                let expId = expenses[i].id
                 let expAmount = expenses[i].amount
                 let expCategory = expenses[i].category
                 let expDescription = expenses[i].description
                 let expDate = expenses[i].createdAt.slice(0,10)
 
-                displayExpense(expAmount, expCategory, expDescription, expDate)
+                displayExpense(expAmount, expCategory, expDescription, expDate, expId)
             }
         })
     })
@@ -84,8 +85,16 @@ function addItem(e){
 function removeElement(e){
     if(e.target.classList.contains("delete")){
         if(confirm("Are you sure?")){
-            var li = e.target.parentElement
-            itemList.removeChild(li)
+            let id = e.target.parentElement.id
+            axios.post('http://localhost:3000/home/deleteExpense',{id},{ headers: {"Authorization" : token} })
+            .then((res)=>{
+                console.log(res)
+
+                var li = e.target.parentElement
+                itemList.removeChild(li)
+            }).catch(err=>console.log(err))
+
+            
         }
     }
 }
@@ -122,7 +131,7 @@ function filterItems(e){
     });
 }
 
-function displayExpense(expAmount, expCategory, expDescription, expDate){
+function displayExpense(expAmount, expCategory, expDescription, expDate, expId){
     let newExpense = `
             ${expAmount} : ${expCategory} : ${expDescription} : ${expDate}
 
@@ -130,7 +139,7 @@ function displayExpense(expAmount, expCategory, expDescription, expDate){
         // Creating new list element
         var li = document.createElement("li")
         li.className = "list-group-item"
-        
+        li.id = expId
         // Adding text node with input value
         li.appendChild(document.createTextNode(newExpense))
 
@@ -197,4 +206,11 @@ async function buyPremium(e){
     });
 
 }
+
+let logoutBtn = document.querySelector('#logout')
+
+logoutBtn.addEventListener('click', (e)=>{
+    localStorage.clear()
+    window.location.replace('../LoginPage/login.html')
+})
 

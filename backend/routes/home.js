@@ -11,5 +11,6 @@ router.post('/home/addExpense', authorizationController.authenticateToken, homeC
 router.get('/home/getExpenses',authorizationController.authenticateToken, homeController.getAllExpenses)
 router.get('/home/purchasePremium', authorizationController.authenticateToken, orderController.purchasepremium)
 router.post('/home/updateTransactionStatus', authorizationController.authenticateToken, orderController.updateTransactionStatus)
-
+router.get('/home/leaderboard', authorizationController.authenticateToken, homeController.getExpenseTotals)
+router.post('/home/deleteExpense', authorizationController.authenticateToken, homeController.postDeleteExpense)
 module.exports = router
