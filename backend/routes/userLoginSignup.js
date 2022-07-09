@@ -9,7 +9,6 @@ router.post('/signup', userController.postSignup)
 
 router.post('/login', userController.postLogin)
 
-router.post('/login/forgotpassword', userController.postForgotPassword)
 
 
 
