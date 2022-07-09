@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const { json } = require('body-parser');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
+const sgMail = require('@sendgrid/mail')
 
 exports.postSignup = async (req, res, next)=>{
     let userDetails = req.body
@@ -20,6 +21,7 @@ exports.postSignup = async (req, res, next)=>{
         })
         res.json({flag: true, msg: "User created"})
     }else{
+        
         res.json({flag: false, msg: "user already exists"})
     }
 }
@@ -49,3 +51,34 @@ exports.postLogin = async(req,res,next)=>{
         res.status(404).json({msg: 'User not found'})
     }
 }
+
+exports.postForgotPassword = async (req, res, next)=>{
+    let email = req.body.email
+    let users = await User.findAll({where:{email: email}})
+
+    //console.log(users)
+
+    if(users.length === 0){
+        res.status(404).json({msg: 'User does not exist'})
+    }else{
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+        to: email, // Change to your recipient
+        from: 'nagarkritikyt@gmail.com', // Change to your verified sender
+        subject: 'Sending with SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        }
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+        res.status(200).json({msg: 'User found'})
+    }
+    
+}
+

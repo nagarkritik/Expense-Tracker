@@ -82,3 +82,10 @@ function filterItems(e){
 
     });
 }
+
+let logoutBtn = document.querySelector('#logout')
+
+logoutBtn.addEventListener('click', (e)=>{
+    localStorage.clear()
+    window.location.replace('../LoginPage/login.html')
+})
