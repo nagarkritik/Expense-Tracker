@@ -136,3 +136,11 @@ exports.getMonthlyExpenses = (req, res, next)=>{
         res.json(result)
     })
 }
+
+exports.downloadExpenseList = async(req, res, next)=>{
+    
+    const expenses = await req.user.getExpenses()
+    const stringifiedExp = JSON.stringify(expenses)
+    const filename = 'Expense.txt'
+
+}

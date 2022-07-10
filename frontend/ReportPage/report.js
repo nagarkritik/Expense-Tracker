@@ -99,5 +99,16 @@ logoutBtn.addEventListener('click', (e)=>{
     window.location.replace('../LoginPage/login.html')
 })
 
+const downloadBtn = document.querySelector('#download')
 
+downloadBtn.addEventListener('click', (e)=>{
+    e.preventDefault()
+
+    axios.get('http://localhost:3000/home/report/download',  { headers: {"Authorization" : token} })
+    .then(res=>{
+        console.log(res)
+    })
+    .catch(err=>console.log(err))
+
+})
 

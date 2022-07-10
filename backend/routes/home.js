@@ -16,6 +16,6 @@ router.post('/home/deleteExpense', authorizationController.authenticateToken, ho
 router.get('/home/report/getDailyExpenses', authorizationController.authenticateToken, homeController.getDailyExpenses)
 router.get('/home/report/getWeeklyExpenses', authorizationController.authenticateToken, homeController.getWeeklyExpenses)
 router.get('/home/report/getMonthlyExpenses', authorizationController.authenticateToken, homeController.getMonthlyExpenses)
-
+router.get('/home/report/download', authorizationController.authenticateToken, homeController.downloadExpenseList)
 
 module.exports = router
