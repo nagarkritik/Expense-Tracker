@@ -50,6 +50,7 @@ exports.getExpenseTotals = async (req, res, next)=>{
         raw: true
       })
 
+      
     totalAmount.sort((a,b)=> b.total_amount-a.total_amount)
     
     for(let i=0; i<totalAmount.length; i++){
