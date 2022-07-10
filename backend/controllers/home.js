@@ -141,21 +141,18 @@ exports.getMonthlyExpenses = (req, res, next)=>{
 
 exports.downloadExpenseList = async(req, res, next)=>{
     
-    const BUCKET_NAME = 'expensetrackerkritik'
-    const IAM_USER_KEY = 'AKIA2B6NDONX6EBVFMXU'
-    const IAM_USER_SECRET = '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'
     const userId = req.user.id
     const expenses = await req.user.getExpenses()
     const stringifiedExp = JSON.stringify(expenses)
     const filename = `Expense${userId}/${new Date()}.txt`
 
     let s3Bucket = new AWS.S3({
-        accessKeyId: IAM_USER_KEY,
-        secretAccessKey: IAM_USER_SECRET,
+        accessKeyId: process.env.IAM_USER_KEY,
+        secretAccessKey:process.env.IAM_USER_SECRET,
     })
 
     let params = {
-        Bucket: BUCKET_NAME,
+        Bucket: process.env.BUCKET_NAME,
         Key: filename,
         Body: stringifiedExp,
         ACL: 'public-read'
