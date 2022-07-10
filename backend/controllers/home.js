@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const User = require('../models/user')
 const Expense = require('../models/expense')
 const Download = require('../models/download')
