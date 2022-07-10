@@ -1,11 +1,13 @@
 const User = require('../models/user')
 const Expense = require('../models/expense')
+const Download = require('../models/download')
 const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt');
 const { json } = require('body-parser');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 const Op = Sequelize.Op
+const AWS = require('aws-sdk')
 
 exports.postExpense = (req,res,next)=>{
     const expense = req.body.expense
@@ -139,8 +141,37 @@ exports.getMonthlyExpenses = (req, res, next)=>{
 
 exports.downloadExpenseList = async(req, res, next)=>{
     
+    const BUCKET_NAME = 'expensetrackerkritik'
+    const IAM_USER_KEY = 'AKIA2B6NDONX6EBVFMXU'
+    const IAM_USER_SECRET = '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'
+    const userId = req.user.id
     const expenses = await req.user.getExpenses()
     const stringifiedExp = JSON.stringify(expenses)
-    const filename = 'Expense.txt'
+    const filename = `Expense${userId}/${new Date()}.txt`
+
+    let s3Bucket = new AWS.S3({
+        accessKeyId: IAM_USER_KEY,
+        secretAccessKey: IAM_USER_SECRET,
+    })
+
+    let params = {
+        Bucket: BUCKET_NAME,
+        Key: filename,
+        Body: stringifiedExp,
+        ACL: 'public-read'
+    }
+
+    s3Bucket.upload(params, (err, s3Response)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            //console.log(s3Response)
+            let fileURL = s3Response.Location
+            req.user.createDownload({url: fileURL})
+            res.status(200).json({fileURL, msg: 'Success'})
+        }
+    })
+  
 
 }

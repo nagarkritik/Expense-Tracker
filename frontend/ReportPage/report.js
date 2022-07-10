@@ -106,7 +106,12 @@ downloadBtn.addEventListener('click', (e)=>{
 
     axios.get('http://localhost:3000/home/report/download',  { headers: {"Authorization" : token} })
     .then(res=>{
-        console.log(res)
+        //console.log(res.data.fileURL)
+
+        let a = document.createElement('a')
+        a.href = res.data.fileURL
+        a.download = 'myExpense.csv'
+        a.click()
     })
     .catch(err=>console.log(err))
 
