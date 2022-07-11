@@ -12,7 +12,7 @@ btn.addEventListener("click", () => {
 })
 
 window.addEventListener('DOMContentLoaded', async (e)=>{
-    let user = await axios.get('http://localhost:3000/home', { headers: {"Authorization" : token} })
+    let user = await axios.get('http://107.21.158.228:3000/home', { headers: {"Authorization" : token} })
     
     console.log(user.data.user.isPremium)
 
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', async (e)=>{
         `
     }
 
-    let dailyExpenses = await axios.get('http://localhost:3000/home/report/getDailyExpenses', { headers: {"Authorization" : token} })
+    let dailyExpenses = await axios.get('http://107.21.158.228:3000/home/report/getDailyExpenses', { headers: {"Authorization" : token} })
     
     let dailyArray = dailyExpenses.data
     
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', async (e)=>{
         display(dailyArray[i].amount, dailyArray[i].category, dailyArray[i].description, dailyArray[i].createdAt.slice(0,10), dailyList)
     }
 
-    let weeklyExpenses = await axios.get('http://localhost:3000/home/report/getWeeklyExpenses', { headers: {"Authorization" : token} })
+    let weeklyExpenses = await axios.get('http://107.21.158.228:3000/home/report/getWeeklyExpenses', { headers: {"Authorization" : token} })
     //console.log(weeklyExpenses)
 
     let weeklyArray = weeklyExpenses.data
@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', async (e)=>{
         display(weeklyArray[i].amount, weeklyArray[i].category, weeklyArray[i].description, weeklyArray[i].createdAt.slice(0,10), weeklyList)
     }
 
-    let monthlyExpenses = await axios.get('http://localhost:3000/home/report/getMonthlyExpenses', { headers: {"Authorization" : token} }) 
+    let monthlyExpenses = await axios.get('http://107.21.158.228:3000/home/report/getMonthlyExpenses', { headers: {"Authorization" : token} }) 
     console.log(monthlyExpenses)
 
     let monthlyArray = monthlyExpenses.data
@@ -104,7 +104,7 @@ const downloadBtn = document.querySelector('#download')
 downloadBtn.addEventListener('click', (e)=>{
     e.preventDefault()
 
-    axios.get('http://localhost:3000/home/report/download',  { headers: {"Authorization" : token} })
+    axios.get('http://107.21.158.228:3000/home/report/download',  { headers: {"Authorization" : token} })
     .then(res=>{
         //console.log(res.data.fileURL)
 

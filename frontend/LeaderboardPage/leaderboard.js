@@ -8,7 +8,7 @@ let filter = document.querySelector("#filter")
 filter.addEventListener("keyup", filterItems)
 
 window.addEventListener('DOMContentLoaded', (e)=>{
-    axios.get('http://localhost:3000/home', { headers: {"Authorization" : token} })
+    axios.get('http://107.21.158.228:3000/home', { headers: {"Authorization" : token} })
     .then(user=>{
 
         console.log(user.data.user.isPremium)
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', (e)=>{
             `
         }
 
-        axios.get('http://localhost:3000/home/leaderboard', { headers: {"Authorization" : token} })
+        axios.get('http://107.21.158.228:3000/home/leaderboard', { headers: {"Authorization" : token} })
         .then(data=>{
             console.log(data.data.totalAmount)
             let totals = data.data.totalAmount

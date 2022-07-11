@@ -9,7 +9,7 @@ resetBtn.addEventListener('click', (e)=>{
         email.placeholder = "Please enter your email"
         email.classList.add("empty")
     }else{
-        axios.post('http://localhost:3000/forgotpassword', {email:email.value})
+        axios.post('http://107.21.158.228:3000/forgotpassword', {email:email.value})
         .then(res=>{
             console.log(res)
         })

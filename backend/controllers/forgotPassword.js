@@ -12,7 +12,7 @@ const bcrypt = require("bcrypt");
 exports.forgotPassword = async (req, res) => {
   var email = req.body.email;
 
-  console.log(email)
+  //console.log(email)
 
   await User.findOne({ where: { email: email } })
     .then((user) => {
@@ -28,7 +28,7 @@ exports.forgotPassword = async (req, res) => {
           from: "nagarkritikyt@gmail.com", 
           subject: "Forgot password",
           text: "and easy to do anywhere, even with Node.js",
-          html: `<a href="http://localhost:3000/resetpassword/${id}">Reset password</a>`,
+          html: `<a href="http://107.21.158.228:3000/resetpassword/${id}">Reset password</a>`,
         }
 
         sgMail
@@ -62,7 +62,7 @@ exports.resetPassword=(req,res)=>{
    ForgetPassword.findOne({where:{id:id}}).then(forgotPassword=>{
      if(forgotPassword){
 
-       console.log(forgotPassword.active)
+       //console.log(forgotPassword.active)
        if(!forgotPassword.active){
         res.status(200).send(
           `
@@ -100,10 +100,8 @@ exports.resetPassword=(req,res)=>{
 
 exports.updatePassword=(req,res)=>{
   const newpassword=req.query.newpassword;
-  console.log(req.body)
+  //console.log(req.body)
   const id=req.params.id
-
-  console.log(req.body)
 
   ForgetPassword.findOne({where:{id}}).then(forgotpassword=>{
     // console.log(forgotpassword.userId)
@@ -114,7 +112,7 @@ exports.updatePassword=(req,res)=>{
         bcrypt.hash(newpassword, saltRounds, function (err, hash) {
           
           
-          console.log(hash)
+          //console.log(hash)
           user.update({
               password: hash
              

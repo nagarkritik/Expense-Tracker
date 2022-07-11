@@ -23,6 +23,12 @@ app.use(userRoutes)
 app.use(homeRoutes)
 app.use(forgotRoutes)
 
+app.use((req, res)=>{
+    //console.log('url: ', req.url)
+    res.sendFile(path.join(__dirname, `../frontend/${req.url}`))
+  })
+  
+
 User.hasMany(Expense)
 Expense.belongsTo(User)
 

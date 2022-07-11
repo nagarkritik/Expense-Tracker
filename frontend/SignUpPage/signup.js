@@ -28,7 +28,7 @@ signupButton.addEventListener('click', (e)=>{
             name: name.value, email:email.value, phone:phone.value, password: password.value
         }
         console.log(userDetails)
-        axios.post('http://localhost:3000/signup', userDetails)
+        axios.post('http://107.21.158.228:3000/signup', userDetails)
         .then((res)=>{
             console.log(res.data.flag)
 

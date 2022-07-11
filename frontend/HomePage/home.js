@@ -14,7 +14,7 @@ let category = document.querySelector('#category')
 
 
 window.addEventListener('DOMContentLoaded', (e)=>{
-    axios.get('http://localhost:3000/home', { headers: {"Authorization" : token} })
+    axios.get('http://107.21.158.228:3000/home', { headers: {"Authorization" : token} })
     .then(user=>{
 
         console.log(user.data.user.isPremium)
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', (e)=>{
 
         }
 
-        axios.get('http://localhost:3000/home/getExpenses', { headers: {"Authorization" : token} })
+        axios.get('http://107.21.158.228:3000/home/getExpenses', { headers: {"Authorization" : token} })
         .then(res=>{
         console.log(res)
 
@@ -67,7 +67,7 @@ function addItem(e){
     e.preventDefault()
     let expense = {amount: amount.value, description: description.value, category: category.value}
     const token = localStorage.getItem('token')
-    axios.post('http://localhost:3000/home/addExpense',{expense},{ headers: {"Authorization" : token} })
+    axios.post('http://107.21.158.228:3000/home/addExpense',{expense},{ headers: {"Authorization" : token} })
     .then(res=>{
         let addedExpense = res.data.result
         let date = addedExpense.createdAt.slice(0,10)
@@ -87,7 +87,7 @@ function removeElement(e){
     if(e.target.classList.contains("delete")){
         if(confirm("Are you sure?")){
             let id = e.target.parentElement.id
-            axios.post('http://localhost:3000/home/deleteExpense',{id},{ headers: {"Authorization" : token} })
+            axios.post('http://107.21.158.228:3000/home/deleteExpense',{id},{ headers: {"Authorization" : token} })
             .then((res)=>{
                 console.log(res)
 
@@ -162,7 +162,7 @@ premiumBtn.addEventListener('click', buyPremium)
 async function buyPremium(e){
 
     e.preventDefault();
-        const response  = await axios.get('http://localhost:3000/home/purchasePremium', { headers: {"Authorization" : token} });
+        const response  = await axios.get('http://107.21.158.228:3000/home/purchasePremium', { headers: {"Authorization" : token} });
         console.log(response);
         var options =
         {
@@ -180,7 +180,7 @@ async function buyPremium(e){
          // This handler function will handle the success payment
          "handler": function (response) {
              console.log(response);
-             axios.post('http://localhost:3000/home/updateTransactionStatus',{
+             axios.post('http://107.21.158.228:3000/home/updateTransactionStatus',{
                  order_id: options.order_id,
                  payment_id: response.razorpay_payment_id,
              }, { headers: {"Authorization" : token} }).then(() => {
