@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const sequelize = require('./util/database')
 const userRoutes = require('./routes/userLoginSignup')
