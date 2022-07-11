@@ -1,6 +1,6 @@
 
 const sgMail = require("@sendgrid/mail");
-const ForgetPassword = require("../models/forgotpassword");
+const ForgetPassword = require("../models/forgotPassword");
 const User = require("../models/user");
 
 
